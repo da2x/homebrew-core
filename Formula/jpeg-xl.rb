@@ -78,7 +78,12 @@ class JpegXl < Formula
   end
 
   test do
+    # encoding
     system "#{bin}/cjxl", test_fixtures("test.jpg"), "test.jxl"
     assert_predicate testpath/"test.jxl", :exist?
+    
+    # decoding
+    system "#{bin}/djxl", "test.jxl", "test.png"
+    assert_predicate testpath/"test.png", :exist?
   end
 end
